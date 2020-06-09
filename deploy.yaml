@@ -17,8 +17,7 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
-        image: ${REPOSITORY_TAG}
-        imagePullPolicy: Never
+        image: pravalikakubernetes/webapp:latest
         readinessProbe:
           httpGet:
             path: /
@@ -35,10 +34,9 @@ spec:
   # or maybe external users to connect to (eg browser)
   selector:
     app: webapp
-
   ports:
     - name: http
       port: 80
       nodePort: 30080
 
-  type: NodePort
+  type: LoadBalancer
